@@ -1,5 +1,5 @@
-/* this is the most performant way, but maybe not the most elegant if I used one container
- and I used template literals to add divs all the innerHTML would have been reparsed
+/* this is the most performant way, but maybe not the most elegant if I had used one container
+ and I had used template literals to add divs all the innerHTML would have been reparsed
 on every iteration
 */
 
