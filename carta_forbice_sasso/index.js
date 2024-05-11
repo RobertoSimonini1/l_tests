@@ -16,6 +16,25 @@ const symbols = [
     }
 ]
 
+// nodes
+const modeButtons = document.querySelectorAll("button.mode")
+const keyButtonsSection = document.getElementById('key-buttons')
+
+
+let mode = undefined;
+let humanChoice = '';
+
+
+const chooseMode = (choosenMode) => {
+    mode = choosenMode
+    modeButtons.forEach((button) => button.classList.add('visually-hidden'))
+
+    if (mode === 'human') {
+        keyButtonsSection.classList.remove('visually-hidden')
+    }
+}
+
+
 const generateTwoRandomNumbers = () => {
     const random = Math.floor(Math.random() * (symbols.length))
     const random2 = Math.floor(Math.random() * (symbols.length))
@@ -23,8 +42,7 @@ const generateTwoRandomNumbers = () => {
     return [random, random2]
 }
 
-
-const getResult = () => {
+const playComputerVsComputer = () => {
     const [random, random2] = generateTwoRandomNumbers()
 
     // pareggio
@@ -47,5 +65,44 @@ const getResult = () => {
     }
 }
 
+const playVsComputer = () => {
+    // Human vs Computer
+    const computerChoice = Math.floor(Math.random() * (symbols.length))
+    const userKey = symbols.find((symbol) => symbol.key === humanChoice)
 
-getResult()
+    // pareggio
+    if (userKey.id === computerChoice) {
+        console.log(`tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, pareggio`)
+        return
+    }
+
+    // vittoria
+    if (userKey.beats === symbols[computerChoice].key) {
+        console.log(`tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, Hai Vinto :)`)
+        return
+    }
+
+    // sconfitta
+    console.log(`tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, Hai perso, riprova, sarai più fortunato :(`)
+}
+
+
+const getResult = () => {
+    // Computer vs Computer
+    if (mode === 'computer') {
+        playComputerVsComputer()
+        return
+    }
+
+
+    // Human vs Computer
+    if (mode === 'human') {
+        playVsComputer()
+        return
+    }
+}
+
+const chooseChoice = (choice) => {
+    humanChoice = choice;
+    getResult()
+}
