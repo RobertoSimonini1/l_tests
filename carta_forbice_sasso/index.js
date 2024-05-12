@@ -19,6 +19,8 @@ const symbols = [
 // nodes
 const modeButtons = document.querySelectorAll("button.mode")
 const keyButtonsSection = document.getElementById('key-buttons')
+const modeSection = document.getElementById('mode')
+const result = document.getElementById('result')
 
 
 let mode = undefined;
@@ -28,6 +30,7 @@ let humanChoice = '';
 const chooseMode = (choosenMode) => {
     mode = choosenMode
     modeButtons.forEach((button) => button.classList.add('visually-hidden'))
+    modeSection.classList.add('visually-hidden')
 
     if (mode === 'human') {
         keyButtonsSection.classList.remove('visually-hidden')
@@ -72,18 +75,18 @@ const playVsComputer = () => {
 
     // pareggio
     if (userKey.id === computerChoice) {
-        console.log(`tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, pareggio`)
+        result.innerHTML = `tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, pareggio`
         return
     }
 
     // vittoria
     if (userKey.beats === symbols[computerChoice].key) {
-        console.log(`tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, Hai Vinto :)`)
+        result.innerHTML = `tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, Hai Vinto :)`
         return
     }
 
     // sconfitta
-    console.log(`tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, Hai perso, riprova, sarai più fortunato :(`)
+    result.innerHTML = `tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, Hai perso, riprova, sarai più fortunato :(`
 }
 
 
