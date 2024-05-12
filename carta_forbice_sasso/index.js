@@ -51,6 +51,8 @@ const generateTwoRandomNumbers = () => {
 }
 
 const playComputerVsComputer = () => {
+    computerVsComputerButton.classList.add('visually-hidden')
+
     const [random, random2] = generateTwoRandomNumbers()
 
     // pareggio
@@ -118,6 +120,10 @@ const playAgain = () => {
     playAgainButton.classList.add('visually-hidden')
     result.innerHTML = ''
     choiceButtons.forEach((button) => button.classList.remove('visually-hidden'))
+
+    if (mode === 'computer') {
+        computerVsComputerButton.classList.remove('visually-hidden')
+    }
 }
 
 const chooseChoice = (choice) => {
