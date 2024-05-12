@@ -24,6 +24,7 @@ const choiceButtons = document.querySelectorAll("button.choice")
 const result = document.getElementById('result')
 const playAgainButton = document.getElementById('play-again')
 const computerVsComputerButton = document.getElementById('computer')
+const homeButton = document.getElementById('home-button')
 
 
 let mode = undefined;
@@ -34,6 +35,7 @@ const chooseMode = (choosenMode) => {
     mode = choosenMode
     modeButtons.forEach((button) => button.classList.add('visually-hidden'))
     modeSection.classList.add('visually-hidden')
+    homeButton.classList.remove('visually-hidden')
 
     if (mode === 'human') {
         keyButtonsSection.classList.remove('visually-hidden')
@@ -129,4 +131,18 @@ const playAgain = () => {
 const chooseChoice = (choice) => {
     humanChoice = choice;
     getResult()
+}
+
+const resetGame = () => {
+    mode = undefined;
+    humanChoice = '';
+
+    modeButtons.forEach((button) => button.classList.remove('visually-hidden'))
+    modeSection.classList.remove('visually-hidden')
+    keyButtonsSection.classList.add('visually-hidden')
+    computerVsComputerButton.classList.add('visually-hidden')
+    playAgainButton.classList.add('visually-hidden')
+    result.innerHTML = ''
+    choiceButtons.forEach((button) => button.classList.remove('visually-hidden'))
+    homeButton.classList.add('visually-hidden')
 }
