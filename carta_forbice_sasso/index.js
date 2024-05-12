@@ -20,7 +20,9 @@ const symbols = [
 const modeButtons = document.querySelectorAll("button.mode")
 const keyButtonsSection = document.getElementById('key-buttons')
 const modeSection = document.getElementById('mode')
+const choiceButtons = document.querySelectorAll("button.choice")
 const result = document.getElementById('result')
+const playAgainButton = document.getElementById('play-again')
 
 
 let mode = undefined;
@@ -73,6 +75,8 @@ const playVsComputer = () => {
     const computerChoice = Math.floor(Math.random() * (symbols.length))
     const userKey = symbols.find((symbol) => symbol.key === humanChoice)
 
+    choiceButtons.forEach((button) => button.classList.add('visually-hidden'))
+
     // pareggio
     if (userKey.id === computerChoice) {
         result.innerHTML = `tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, pareggio`
@@ -81,12 +85,18 @@ const playVsComputer = () => {
 
     // vittoria
     if (userKey.beats === symbols[computerChoice].key) {
-        result.innerHTML = `tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, Hai Vinto :)`
+        result.innerHTML = `tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, hai vinto :)`
         return
     }
 
     // sconfitta
-    result.innerHTML = `tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, Hai perso, riprova, sarai più fortunato :(`
+    result.innerHTML = `tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, hai perso, riprova, sarai più fortunato :(`
+}
+
+const playAgain = () => {
+    playAgainButton.classList.add('visually-hidden')
+    result.innerHTML = ''
+    choiceButtons.forEach((button) => button.classList.remove('visually-hidden'))
 }
 
 
@@ -94,6 +104,7 @@ const getResult = () => {
     // Computer vs Computer
     if (mode === 'computer') {
         playComputerVsComputer()
+        playAgainButton.classList.remove('visually-hidden')
         return
     }
 
@@ -101,6 +112,7 @@ const getResult = () => {
     // Human vs Computer
     if (mode === 'human') {
         playVsComputer()
+        playAgainButton.classList.remove('visually-hidden')
         return
     }
 }
