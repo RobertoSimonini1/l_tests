@@ -23,6 +23,7 @@ const modeSection = document.getElementById('mode')
 const choiceButtons = document.querySelectorAll("button.choice")
 const result = document.getElementById('result')
 const playAgainButton = document.getElementById('play-again')
+const computerVsComputerButton = document.getElementById('computer')
 
 
 let mode = undefined;
@@ -36,6 +37,8 @@ const chooseMode = (choosenMode) => {
 
     if (mode === 'human') {
         keyButtonsSection.classList.remove('visually-hidden')
+    } else {
+        computerVsComputerButton.classList.remove('visually-hidden')
     }
 }
 
@@ -52,7 +55,7 @@ const playComputerVsComputer = () => {
 
     // pareggio
     if (random === random2) {
-        console.log(random, random2, 'pareggio')
+        result.innerHTML = `il player 1 ha scelto ${symbols[random].key}, il player 2 ha scelto ${symbols[random2].key} quindi il risultato è un pareggio`
         return
     }
 
@@ -60,12 +63,12 @@ const playComputerVsComputer = () => {
     const key2 = symbols.find((element) => element.id === random2)
 
     if (key1.beats === key2.key) {
-        // vittoria
-        console.log(key1.key, key2.key, 'Hai Vinto :)')
+        // player 1 vince
+        result.innerHTML = `il player 1 ha scelto ${key1.key}, il player 2 ha scelto ${key2.key}, il player 1 ha vinto`
         return
     } else {
-        // sconfitta
-        console.log(key1.key, key2.key, 'Hai perso, riprova, sarai più fortunato :(')
+        // player 2 vince
+        result.innerHTML = `il player 1 ha scelto ${key1.key}, il player 2 ha scelto ${key2.key}, il player 2 ha vinto`
         return
     }
 }
@@ -93,12 +96,6 @@ const playVsComputer = () => {
     result.innerHTML = `tu hai scelto ${userKey.key}, il computer ha scelto ${symbols[computerChoice].key}, hai perso, riprova, sarai più fortunato :(`
 }
 
-const playAgain = () => {
-    playAgainButton.classList.add('visually-hidden')
-    result.innerHTML = ''
-    choiceButtons.forEach((button) => button.classList.remove('visually-hidden'))
-}
-
 
 const getResult = () => {
     // Computer vs Computer
@@ -115,6 +112,12 @@ const getResult = () => {
         playAgainButton.classList.remove('visually-hidden')
         return
     }
+}
+
+const playAgain = () => {
+    playAgainButton.classList.add('visually-hidden')
+    result.innerHTML = ''
+    choiceButtons.forEach((button) => button.classList.remove('visually-hidden'))
 }
 
 const chooseChoice = (choice) => {
