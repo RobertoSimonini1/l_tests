@@ -1,0 +1,10 @@
+body {
+	background: linear-gradient(#e7f4ff, 50%, #45b796) fixed;
+}
+
+#center {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+}
