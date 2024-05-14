@@ -103,6 +103,10 @@ const playVsComputer = () => {
 
 
 const getResult = () => {
+    if (!mode) {
+        return undefined
+    }
+
     // Computer vs Computer
     if (mode === 'computer') {
         playComputerVsComputer()
@@ -164,6 +168,8 @@ const resetGame = () => {
     result.innerHTML = ''
     homeButton.classList.add('visually-hidden')
 }
+
+module.exports = { getResult }
 
 
 
