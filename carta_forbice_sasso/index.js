@@ -20,7 +20,6 @@ const symbols = [
 const modeButtons = document.querySelectorAll("button.mode")
 const keyButtonsSection = document.getElementById('key-buttons')
 const modeSection = document.getElementById('mode')
-const choiceButtons = document.querySelectorAll("button.choice")
 const result = document.getElementById('result')
 const playAgainButton = document.getElementById('play-again')
 const computerVsComputerButton = document.getElementById('computer')
@@ -120,16 +119,6 @@ const getResult = () => {
     }
 }
 
-const playAgain = () => {
-    playAgainButton.classList.add('visually-hidden')
-    result.innerHTML = ''
-
-    if (mode === 'computer') {
-        computerVsComputerButton.classList.remove('visually-hidden')
-    } else {
-        keyButtonsSection.classList.remove('visually-hidden')
-    }
-}
 
 const chooseChoice = (choice) => {
     humanChoice = choice;
@@ -152,6 +141,17 @@ const showCountdown = async () => {
     getResult()
 }
 
+const playAgain = () => {
+    playAgainButton.classList.add('visually-hidden')
+    result.innerHTML = ''
+
+    if (mode === 'computer') {
+        computerVsComputerButton.classList.remove('visually-hidden')
+    } else {
+        keyButtonsSection.classList.remove('visually-hidden')
+    }
+}
+
 const resetGame = () => {
     mode = undefined;
     humanChoice = '';
@@ -164,4 +164,6 @@ const resetGame = () => {
     result.innerHTML = ''
     homeButton.classList.add('visually-hidden')
 }
+
+
 
