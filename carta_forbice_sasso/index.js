@@ -57,6 +57,9 @@ const playComputerVsComputer = () => {
 
     const [random, random2] = generateTwoRandomNumbers()
 
+
+
+
     // pareggio
     if (random === random2) {
         result.innerHTML = `il player 1 ha scelto ${symbols[random].key}, il player 2 ha scelto ${symbols[random2].key} quindi il risultato è un pareggio`
@@ -82,7 +85,6 @@ const playVsComputer = () => {
     const computerChoice = Math.floor(Math.random() * (symbols.length))
     const userKey = symbols.find((symbol) => symbol.key === humanChoice)
 
-    choiceButtons.forEach((button) => button.classList.add('visually-hidden'))
 
     // pareggio
     if (userKey.id === computerChoice) {
@@ -130,6 +132,22 @@ const playAgain = () => {
 
 const chooseChoice = (choice) => {
     humanChoice = choice;
+    showCountdown()
+}
+
+const showCountdown = async () => {
+    if (mode === 'human') {
+        choiceButtons.forEach((button) => button.classList.add('visually-hidden'))
+    } else {
+        computerVsComputerButton.classList.add('visually-hidden')
+    }
+
+    result.innerHTML = 'Sasso'
+    await new Promise(r => setTimeout(r, 1000))
+    result.innerHTML = 'Sasso, Carta'
+    await new Promise(r => setTimeout(r, 1000))
+    result.innerHTML = 'Sasso, Carta, Forbice'
+    await new Promise(r => setTimeout(r, 1000))
     getResult()
 }
 
@@ -146,3 +164,4 @@ const resetGame = () => {
     choiceButtons.forEach((button) => button.classList.remove('visually-hidden'))
     homeButton.classList.add('visually-hidden')
 }
+
