@@ -123,10 +123,11 @@ const getResult = () => {
 const playAgain = () => {
     playAgainButton.classList.add('visually-hidden')
     result.innerHTML = ''
-    choiceButtons.forEach((button) => button.classList.remove('visually-hidden'))
 
     if (mode === 'computer') {
         computerVsComputerButton.classList.remove('visually-hidden')
+    } else {
+        keyButtonsSection.classList.remove('visually-hidden')
     }
 }
 
@@ -137,7 +138,7 @@ const chooseChoice = (choice) => {
 
 const showCountdown = async () => {
     if (mode === 'human') {
-        choiceButtons.forEach((button) => button.classList.add('visually-hidden'))
+        keyButtonsSection.classList.add('visually-hidden')
     } else {
         computerVsComputerButton.classList.add('visually-hidden')
     }
@@ -161,7 +162,6 @@ const resetGame = () => {
     computerVsComputerButton.classList.add('visually-hidden')
     playAgainButton.classList.add('visually-hidden')
     result.innerHTML = ''
-    choiceButtons.forEach((button) => button.classList.remove('visually-hidden'))
     homeButton.classList.add('visually-hidden')
 }
 
