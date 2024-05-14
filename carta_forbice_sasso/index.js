@@ -144,9 +144,9 @@ const showCountdown = async () => {
 
     result.innerHTML = 'Sasso'
     await new Promise(r => setTimeout(r, 1000))
-    result.innerHTML = 'Sasso, Carta'
+    result.innerHTML = 'Carta'
     await new Promise(r => setTimeout(r, 1000))
-    result.innerHTML = 'Sasso, Carta, Forbice'
+    result.innerHTML = 'Forbice'
     await new Promise(r => setTimeout(r, 1000))
     getResult()
 }
